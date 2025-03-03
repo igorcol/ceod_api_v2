@@ -1,10 +1,10 @@
 import User from "../../../models/userModel";
 
 
-export const updatePresence = async (ID: number) => {
+export const updatePresence = async (ID: string) => {
     try {
         const user = await User.findOneAndUpdate(
-            { CODIGO: ID },
+            { _id: ID },
             { presenca: true },
             { new: true, upsert: true }
         );

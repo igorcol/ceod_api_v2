@@ -4,13 +4,13 @@ import { userProvider } from "../../database/providers";
 
 
 export const updatePresence = async (req: Request, res: Response) => {
-    const ID = Number(req.params.id)
+    const ID = req.params.id
     console.log(`◾ USERS | UpdatePresence -> ${ID}...`)
 
-    if (Number.isNaN(ID)) {
-        console.log(`❌ O ID fornecido dever ser um Número Inteiro`)
+    if (!ID) {
+        console.log(`❌ O ID deve ser fornecido`)
         res.status(StatusCodes.BAD_REQUEST).json({
-            errors: { default: `❌ O ID fornecido dever ser um Número Inteiro` }
+            errors: { default: `❌ O ID deve ser fornecido` }
         })
         return
     }
