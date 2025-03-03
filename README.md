@@ -1,12 +1,12 @@
 # 🎯 **CEOD API v2**  
 
-🚀 **An API for querying event registrants at the state level of a philosophical and philanthropic youth group.** 🚀  
+🚀 **An API to query registrants of state-level events for a philosophical and philanthropic youth group.** 🚀  
 
 ## 🎯 **About the Project**
 The **CEOD API v2** is the new version of the API used to manage the **CEOD** event.  
 It has been **completely rewritten** in **TypeScript**, bringing a **more organized, modular, and scalable** structure. 
 
-## 🎯 **Detailed About**
+## 📎 **Detailed About**
 With the evolution of my studies in TypeScript, I decided to rebuild the CEOD API from scratch, which was previously developed in JavaScript with a structure that was not very intuitive and difficult to maintain.
 
 The v1 version had disorganized code, low scalability, and did not follow good development practices. With this in mind, I rewrote everything using TypeScript, applying best practices, modularizing the architecture, and making the API more robust, secure, and easy to maintain.
@@ -19,8 +19,7 @@ Now, the CEOD API v2 is fully scalable, follows cleaner and more organized code,
 ![TypeScript](https://img.shields.io/badge/TypeScript-4+-blue?style=flat-square&logo=typescript)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=flat-square&logo=mongodb)
 ![Express.js](https://img.shields.io/badge/Express.js-4+-black?style=flat-square&logo=express)
-![License](https://img.shields.io/badge/License-MIT-red?style=flat-square)
-![GreatMusic](https://img.shields.io/badge/GreatMusic-Spotfy-green?style=flat-square&logo=spotify)
+![GreatMusic](https://img.shields.io/badge/GreatMusic-Spotify-green?style=flat-square&logo=spotify)
 
 --- 
 
@@ -44,7 +43,7 @@ Now, the CEOD API v2 is fully scalable, follows cleaner and more organized code,
 ## 📦 **Installation**
 1️⃣ **Clone this repository**:
 ```bash
-git clone https://github.com/yourusername/ceod_api_v2.git
+git clone https://github.com/igorcol/ceod_api_v2.git
 ```
 2️⃣ **Access the project directory**:
 ```bash
@@ -69,8 +68,9 @@ npm run dev
 
 ### 👥 **Users**
 - `GET /users` → Lists all event registrants.
+- `GET /users/emails` → Lists all event registrants emails.
 - `GET /users/:id` → Fetches a registrant by ID.
-- `PUT /users/:id/presence` → Updates the user's presence.
+- `PATCH /users/:id` → Updates the user's presence.
 
 ### 📥 **Database Control**
 - `POST /export-json` → Exports JSON data into MongoDB.
