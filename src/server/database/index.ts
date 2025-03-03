@@ -1,12 +1,14 @@
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
+import { config } from '../config';
 
 // Faz a conexão com o banco de dados MongoDB usando mongoose
 
-const connectDB = async (URL: string | undefined) => {
+const connectDB = async (URL: string | undefined, OPTIONS: ConnectOptions) => {
+  console.log('URI', URL)
   if (!URL) return
 
   try {
-    await mongoose.connect(URL)
+    await mongoose.connect(URL, OPTIONS) 
 
     URL.includes('localhost') 
     ? console.log('☑️ Conectado ao Mongo Local com sucesso!')

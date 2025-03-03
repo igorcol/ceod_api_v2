@@ -5,6 +5,7 @@ import 'dotenv/config'
 import connectDB from "./database";
 import { router } from "./routes";
 import { CORS_CONFIG } from "./shared/services/Cors";
+import { config } from "./config";
 
 
 
@@ -12,7 +13,7 @@ import { CORS_CONFIG } from "./shared/services/Cors";
 const server = express();
 server.use(express.json())
 server.use(cors(CORS_CONFIG)) // setup cors
-connectDB(process.env.MONGO_DB_URL) // connect to mongo db
+connectDB(config.mongo.uri, config.mongo.options) // connect to mongo db
 
 //* Config Routes
 server.use(router)

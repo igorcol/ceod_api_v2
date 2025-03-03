@@ -1,6 +1,7 @@
+import { config } from "./server/config";
 import { server } from "./server/Server";
 
-const PORT = process.env.PORT
+const PORT = config.PORT
 
 server.listen(PORT, () => {
     console.log(`

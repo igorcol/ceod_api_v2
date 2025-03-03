@@ -9,7 +9,7 @@ const requiredEnvVars = ["MONGO_URI", "PORT"];
 
 requiredEnvVars.forEach((envVar) => {
   if (!process.env[envVar]) {
-    throw new Error(`❌ Erro: A variável de ambiente ${envVar} não está definida.`);
+    throw new Error(`❌ A variável de ambiente ${envVar} não está definida.`);
   }
 });
 
