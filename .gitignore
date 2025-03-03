@@ -1,5 +1,6 @@
 node_modules
 src/server/database/data/*
 !src/server/database/data/README.txt
+build
 
 .env
