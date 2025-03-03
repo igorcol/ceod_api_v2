@@ -1,101 +1,82 @@
 # 🎯 **CEOD API v2**  
 
-🚀 **Uma API para a consulta de inscritos para eventos a nível estadual de um grupo filosófico e filantrópico de Jovens.** 🚀  
+🚀 **An API for querying event registrants at the state level of a philosophical and philanthropic youth group.** 🚀  
 
-Com a evolução dos meus estudos em TypeScript, decidi refazer do zero a API do CEOD, que anteriormente havia sido desenvolvida em JavaScript com uma estrutura pouco intuitiva e difícil de manter.
+## 🎯 **About the Project**
+The **CEOD API v2** is the new version of the API used to manage the **CEOD** event.  
+It has been **completely rewritten** in **TypeScript**, bringing a **more organized, modular, and scalable** structure. 
 
-A versão v1 tinha código desorganizado, baixa escalabilidade e não seguia boas práticas de desenvolvimento. Com isso em mente, reescrevi tudo utilizando TypeScript, aplicando boas práticas, modularizando a arquitetura e tornando a API mais robusta, segura e fácil de manter.
+## 🎯 **Detailed About**
+With the evolution of my studies in TypeScript, I decided to rebuild the CEOD API from scratch, which was previously developed in JavaScript with a structure that was not very intuitive and difficult to maintain.
 
-Agora, a CEOD API v2 é totalmente escalável, segue um código mais limpo e organizado, e está pronta para crescer junto com o evento! 🚀🔥
+The v1 version had disorganized code, low scalability, and did not follow good development practices. With this in mind, I rewrote everything using TypeScript, applying best practices, modularizing the architecture, and making the API more robust, secure, and easy to maintain.
+
+Now, the CEOD API v2 is fully scalable, follows cleaner and more organized code, and is ready to grow with the event! 🚀🔥
 
 ---
 
 ![Node.js](https://img.shields.io/badge/Node.js-16+-green?style=flat-square&logo=node.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4+-blue?style=flat-square&logo=typescript)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=flat-square&logo=mongodb)
+![Express.js](https://img.shields.io/badge/Express.js-4+-black?style=flat-square&logo=express)
 ![License](https://img.shields.io/badge/License-MIT-red?style=flat-square)
+![GreatMusic](https://img.shields.io/badge/GreatMusic-Spotfy-green?style=flat-square&logo=spotify)
+
+--- 
+
+🔄 **Differences from the previous version (`CEOD API v1`)**:
+- ❌ `v1` was written in **JavaScript** and had a disorganized structure.
+- ✅ `v2` uses **TypeScript**, following **best practices** and modern standards.
+- ✅ **Safer, cleaner, and easier to maintain** code.
+- ✅ **Connection with MongoDB** to store registrant data.
+- ⬜ Automation in **XLSX → JSON → MongoDB** conversion. ( Will be implemented in future versions )
 
 ---
 
-## 🎯 **Sobre o Projeto**
-A **CEOD API v2** é a nova versão da API utilizada para gerenciar o evento **CEOD**.  
-Ela foi **totalmente reescrita** em **TypeScript**, trazendo uma estrutura **mais organizada, modular e escalável**.  
-
-🔄 **Diferenças em relação à versão anterior (`CEOD API v1`)**:
-- ❌ `v1` foi escrita em **JavaScript** e possuía uma estrutura desorganizada.
-- ✅ `v2` usa **TypeScript**, seguindo **boas práticas** e padrões modernos.
-- ✅ Código **mais seguro, limpo e de fácil manutenção**.
-- ✅ **Conexão com MongoDB** para armazenar os dados de inscritos.
-- ✅ Automação na conversão **XLSX → JSON → MongoDB**.
-
----
-
-## 🚀 **Principais Tecnologias**
+## 🚀 **Main Technologies**
 - **Node.js** + **TypeScript**
-- **Express.js** – Framework para APIs REST
-- **MongoDB** – Banco de dados NoSQL para armazenamento dos inscritos
-- **Mongoose** – ODM para manipulação do banco
-- **dotenv** – Gerenciamento de variáveis de ambiente
-- **xlsx** – Conversão de planilhas Excel para JSON
+- **Express.js** – Framework for REST APIs
+- **MongoDB** – NoSQL database for storing registrants
+- **Mongoose** – ODM for database manipulation
 
 ---
 
-## 📦 **Instalação**
-1️⃣ **Clone este repositório**:
+## 📦 **Installation**
+1️⃣ **Clone this repository**:
 ```bash
-git clone https://github.com/seuusuario/ceod-api-v2.git
+git clone https://github.com/yourusername/ceod_api_v2.git
 ```
-2️⃣ **Acesse o diretório do projeto**:
+2️⃣ **Access the project directory**:
 ```bash
-cd ceod-api-v2
+cd ceod_api_v2
 ```
-3️⃣ **Instale as dependências**:
+3️⃣ **Install dependencies**:
 ```bash
 npm install
 ```
-4️⃣ **Configure o `.env`** (com base no `.env.example`):
-```ini
-MONGO_URI=mongodb://seu-mongo-url
-PORT=3000
-```
-5️⃣ **Execute a API**:
+
+4️⃣ **Configure the `.env`** (based on `.env.example`):
+
+5️⃣ **Run the API**:
 ```bash
 npm run dev
 ```
-🎉 **Agora a API está rodando em** `http://localhost:3000`
+🎉 **Now the API is running at** `http://localhost:3030`
 
 ---
 
-## 🔗 **Rotas Disponíveis**
-### 📌 **Saúde da API**
-- `GET /health` → Verifica se a API está rodando corretamente.
+## 🔗 **Available Routes**
 
-### 👥 **Usuários**
-- `GET /users` → Lista todos os inscritos do evento.
-- `GET /users/:id` → Busca um inscrito pelo ID.
-- `PUT /users/:id/presence` → Atualiza a presença do usuário.
+### 👥 **Users**
+- `GET /users` → Lists all event registrants.
+- `GET /users/:id` → Fetches a registrant by ID.
+- `PUT /users/:id/presence` → Updates the user's presence.
 
-### 📥 **Importação de Dados**
-- `POST /import` → Converte o arquivo XLSX para JSON e insere no MongoDB.
+### 📥 **Database Control**
+- `POST /export-json` → Exports JSON data into MongoDB.
+- `DELETE /drop-db` 
 
----
-
-## 🛠 **Scripts Úteis**
-| Comando               | Descrição                                     |
-|-----------------------|---------------------------------------------|
-| `npm run dev`        | Inicia a API em modo de desenvolvimento      |
-| `npm run build`      | Compila o código TypeScript                  |
-| `npm run start`      | Inicia a API em produção                     |
-| `npm run import`     | Converte XLSX → JSON → MongoDB automaticamente |
+### 📌 **MISC**
+- `GET /health` → Checks if the API is running correctly.
 
 ---
-
-## 📜 **Licença**
-🔖 Este projeto está sob a licença **MIT** – use e modifique à vontade!
-
----
-
-🔥 **Gostou do projeto? Dê uma estrela!** ⭐  
-📩 **Dúvidas ou sugestões? Abra uma issue!**  
-
-🚀 **Vamos juntos fazer do CEOD um evento cada vez melhor!** 🚀  
