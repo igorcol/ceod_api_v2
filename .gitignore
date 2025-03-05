@@ -5,3 +5,4 @@ src/server/database/data/*
 /coverage
 
 .env
+.vercel
