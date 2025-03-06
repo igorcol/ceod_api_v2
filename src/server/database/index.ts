@@ -4,7 +4,6 @@ import { config } from '../config';
 // Faz a conexão com o banco de dados MongoDB usando mongoose
 
 const connectDB = async (URL: string | undefined) => {
-  console.log('URI', URL)
   if (!URL) return
 
   try {

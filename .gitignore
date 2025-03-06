@@ -4,5 +4,6 @@ src/server/database/data/*
 /build
 /coverage
 
-.env
+.env.*
+!.env.example
 .vercel
