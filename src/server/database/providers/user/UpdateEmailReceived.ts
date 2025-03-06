@@ -1,22 +1,26 @@
 import User from "../../../models/userModel";
 
+interface UpdateEmailReceivedBod {
+    emailReceived: boolean
+}
 
-export const updatePresence = async (ID: string, presenca: boolean) => {
+
+export const updateEmailReceived = async (ID: string, body: UpdateEmailReceivedBod) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: ID },
-            { presenca: presenca },
+            { emailReceived: body.emailReceived },
             { new: true, upsert: true }
         );
         if (user === null) {
             console.log(`❌ Não existe nenhum usuário com o id ${ID}`)
             return new Error(`❌ Não existe nenhum usuário com o id ${ID}`)
         }
-        console.log(`✅ Presença confirmada -> id: ${ID}`)
+        console.log(`✅ Email recebido -> id: ${ID}`)
         return user
     } 
     catch (err) {
-        console.log('❌ Erro ao atualizar presença', err)
-        return new Error('❌ Erro ao atualizar presença')
+        console.log('❌ Erro ao atualizar emailReceived', err)
+        return new Error('❌ Erro ao atualizar emailReceived')
     }
 }
