@@ -2,17 +2,33 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { userProvider } from "../../database/providers";
 
+interface UpdateReceivedRequest extends Request {
+    body: {
+        emailReceived: boolean;
+    };
+}
 
-export const updateEmailReceived = async (req: Request, res: Response) => {
+export const updateEmailReceived = async (req: UpdateReceivedRequest, res: Response) => {
     const ID = req.params.id
     console.log(`◾ USERS | updateEmailReceived -> ${ID}...`)
 
+    const errors = [];
     if (!ID) {
-        console.log(`❌ O ID deve ser fornecido`)
+        errors.push({ default: `❌ O ID deve ser fornecido`});
+    }
+    if (typeof req.body.emailReceived !== 'boolean') {
+        errors.push({ emailReceived:  `❌ TRUE | FALSE`});
+    }
+    if (!req.body.emailReceived && req.body.emailReceived !== false) {
+        errors.push({ body: `❌ O Status de "emailReceived" deve ser fornecido`});
+    }
+
+    if (errors.length > 0) {
+        console.log(errors.join('\n'));
         res.status(StatusCodes.BAD_REQUEST).json({
-            errors: { default: `❌ O ID deve ser fornecido` }
-        })
-        return
+            errors: errors
+        });
+        return;
     }
 
     const result = userProvider.updateEmailReceived(ID, req.body)
