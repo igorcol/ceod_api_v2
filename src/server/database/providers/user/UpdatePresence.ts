@@ -1,11 +1,11 @@
 import User from "../../../models/userModel";
 
 
-export const updatePresence = async (ID: string) => {
+export const updatePresence = async (ID: string, presenca: boolean) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: ID },
-            { presenca: true },
+            { presenca: presenca },
             { new: true, upsert: true }
         );
         if (user === null) {
