@@ -6,4 +6,5 @@ src/server/database/data/*
 
 .env.*
 !.env.example
+
 .vercel
