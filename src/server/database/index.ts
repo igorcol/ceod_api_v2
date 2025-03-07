@@ -14,7 +14,8 @@ const connectDB = async (URL: string | undefined) => {
     ? console.log('✅ Conectado ao banco PRODUÇÃO com sucesso!')
     : console.log('☑️ Conectado ao banco de DESENVOLVIMENTO com sucesso!')
 
-    console.log(URL)
+    const urlParts = URL.split(':');
+    console.log(`${urlParts[0]}:${urlParts[1]}...`);
 
   } 
   catch (error) {
