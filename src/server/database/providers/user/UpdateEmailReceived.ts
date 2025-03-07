@@ -10,7 +10,7 @@ export const updateEmailReceived = async (ID: string, body: UpdateEmailReceivedB
         const user = await User.findOneAndUpdate(
             { _id: ID },
             { emailReceived: body.emailReceived },
-            { new: true, upsert: true }
+            { new: true }
         );
         if (user === null) {
             console.log(`❌ Não existe nenhum usuário com o id ${ID}`)

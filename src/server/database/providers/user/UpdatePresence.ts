@@ -6,7 +6,7 @@ export const updatePresence = async (ID: string, presenca: boolean) => {
         const user = await User.findOneAndUpdate(
             { _id: ID },
             { presenca: presenca },
-            { new: true, upsert: true }
+            { new: true }
         );
         if (user === null) {
             console.log(`❌ Não existe nenhum usuário com o id ${ID}`)
