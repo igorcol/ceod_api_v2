@@ -6,7 +6,7 @@ interface UserJson {
     EMAIL?: string;
     presenca?: boolean;
     emailReceived?: boolean;
-    [key: string]: any; // Permite outros campos sem erro
+    [key: string]: any; // Permite outros campos 
 }
 
 
@@ -17,21 +17,31 @@ export const exportJson = async (json_path: string) => {
         const data = JSON.parse(rawData);
 
         if (!data.users || !Array.isArray(data.users)) {
-            console.log('❌ Formato de arquivo inválido' )
-            return new Error('❌ Formato de arquivo inválido' );
+            console.log('❌ Formato de arquivo inválido')
+            return new Error('❌ Formato de arquivo inválido');
         }
 
-        const userToInsert = data.users.map((user: UserJson) => ({
-            ...user,
-            EMAIL: user.EMAIL ?? null,
-            presenca: user.presenca ?? false,
-            emailReceived: user.emailReceived ?? false
+        const bulkOperations = data.users.map((user: UserJson) => ({
+            updateOne: {
+                filter: { NOME: user.NOME },
+                update: {
+                    $set: {
+                        ...user,
+                        EMAIL: user.EMAIL ?? null
+                    },
+                    $setOnInsert: { // Adiciona apenas ao ser inserido um novo usuario
+                        presenca: false,
+                        emailReceived: false
+                    }
+                },
+                upsert: true // Insere um novo caso não tenha esse nome
+            }
         }))
 
-        await User.insertMany(userToInsert);
+        await User.bulkWrite(bulkOperations);
         console.log("🟩 JSON EXPORTED")
-        return 
-    } 
+        return
+    }
     catch (err) {
         console.log('❌ Erro ao exportar JSON', err)
         return new Error('❌ Erro ao exportar JSON');
