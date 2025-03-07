@@ -31,7 +31,7 @@ export const updateEmailReceived = async (req: UpdateReceivedRequest, res: Respo
         return;
     }
 
-    const result = userProvider.updateEmailReceived(ID, req.body)
+    const result = await userProvider.updateEmailReceived(ID, req.body)
 
     if (result instanceof Error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

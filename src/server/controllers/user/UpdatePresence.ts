@@ -32,7 +32,7 @@ export const updatePresence = async (req: UpdatePresenceRequest, res: Response) 
         return;
     }
 
-    const result = userProvider.updatePresence(ID, req.body.presenca)
+    const result = await userProvider.updatePresence(ID, req.body.presenca)
 
     if (result instanceof Error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
