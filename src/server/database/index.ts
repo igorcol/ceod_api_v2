@@ -2,6 +2,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import { config } from '../config';
 
 // Faz a conexão com o banco de dados MongoDB usando mongoose
+const isProduction = config.ENV === 'production' 
 
 const connectDB = async (URL: string | undefined) => {
   if (!URL) return
@@ -9,9 +10,9 @@ const connectDB = async (URL: string | undefined) => {
   try {
     await mongoose.connect(URL) 
 
-    URL.includes('localhost') 
-    ? console.log('☑️ Conectado ao Mongo Local com sucesso!')
-    : console.log('✅ Conectado ao MongoDB ONLINE com sucesso!')
+    isProduction 
+    ? console.log('✅ Conectado ao banco PRODUÇÃO com sucesso!')
+    : console.log('☑️ Conectado ao banco de DESENVOLVIMENTO com sucesso!')
 
     console.log(URL)
 
