@@ -9,7 +9,8 @@
     "start": "cross-env NODE_ENV=production node ./build/index.js",
     "start:dev": "cross-env NODE_ENV=development npx ts-node-dev ./src/index.ts",
     "start:prod": "cross-env NODE_ENV=production npx ts-node-dev ./src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "build-vercel": "npx vercel --prod"
   },
   "author": "Igor Colombini",
   "license": "MIT",
