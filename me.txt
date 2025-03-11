@@ -1,25 +1,27 @@
 # ANOTAÇÃO DE RACIOCÍNIOS DE FUTURAS FEATURES #
 
 
-A rodando ONLINE pela VERCEL -> pasta BUILD/index.js
-    O NODE_ENV deve ser 'production'
-            Acessa o banco de dados oficial do evento
 
 
-A api rodando LOCALMENTE, posso dar:
-    NPM RUN DEV:
-        NODE_ENV = 'development'
-        Deverá alterar os dados do banco de dados local OU o um  banco de dados separado para DEV
+Em algum momento durante a fase de inscrições, eu dou export-json pra adicionar os inscritos no db. (  Ex, Igor e Fabio )
 
-    NPM RUN PROD:
-        NODE_ENV = 'production'
-        Irá acessar e alterar os dados do banco de dados em produção
+{
+  _id: *gerado aleatoriamente nesta importação*
+  NOME: igor
+  ID: 92321
+  EMAIL: igor.colombini@gmail.com
+  presence: false
+  emailReceived: false
+},
+{
+  _id: *gerado aleatoriamente nesta importação*
+  NOME: igor
+  ID: 92321
+  EMAIL: igor.colombini@gmail.com
+  presence: false
+  emailReceived: false
+},
 
 
->>> TESTAR
-        Dar build e subir na VERCEL
-            Ver se do jeito que ta, dando npm start lá, aparece o ambiente development ou production
-                Deve aparecer production
-        
-        Caso apareça development
-            Adicionar o cross-env no script start
+  
+Caso alguem mais se inscreva, e eu faça outro export, 
