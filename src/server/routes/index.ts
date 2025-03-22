@@ -4,6 +4,7 @@ import { jsonController, MiscController, UserController } from "../controllers";
 export const router = Router();
 
 router.get('/users', UserController.getAll)
+router.get('/users/countdata', MiscController.GetCountData)
 router.get('/users/emails', UserController.getEmails)
 router.get('/users/:id', UserController.getById)
 
