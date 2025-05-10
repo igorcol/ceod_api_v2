@@ -18,10 +18,13 @@ export const getAll = async (options: GetAllOptions): Promise<object | object[] 
 
         const skip = (page - 1) * limit;
 
-        const [users, total] = await Promise.all([
-            User.find().skip(skip).limit(limit).lean(),
-            User.countDocuments()
-        ]);
+        const total = await User.countDocuments();
+        const totalPages = Math.ceil(total / limit);
+        if (page > totalPages && totalPages !== 0) {
+            return new Error(`Página ${page} inválida. Total de páginas: ${totalPages}.`)
+        }
+
+        const users = await User.find().skip(skip).limit(limit).lean();
 
         console.log(`🟩 USERS | Paginated | Page ${page} | ${users.length} users`);
         
@@ -29,7 +32,7 @@ export const getAll = async (options: GetAllOptions): Promise<object | object[] 
             total,
             page,
             limit,
-            totalPages: Math.ceil(total / limit),
+            totalPages,
             data: users
         };
 
