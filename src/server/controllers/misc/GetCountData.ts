@@ -5,17 +5,17 @@ import { userProvider } from "../../database/providers";
 
 export async function GetCountData(req: Request, res: Response) {
     try {
-        const allResult = await userProvider.getAll()
+        const allResult = await userProvider.getAll({ full: true })
 
         if (Array.isArray(allResult)) {
             const allCount = allResult.length;
             const presenteResult = allResult.filter(user => user.presenca === true).length;
             const ausenteResult = allResult.filter(user => user.presenca === false).length;
             res.status(StatusCodes.OK).json(
-                { 
+                {
                     total: allCount,
-                    presentes: presenteResult, 
-                    ausentes: ausenteResult 
+                    presentes: presenteResult,
+                    ausentes: ausenteResult
 
                 });
         } else {
