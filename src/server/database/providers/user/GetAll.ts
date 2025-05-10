@@ -10,8 +10,10 @@ export const getAll = async (options: GetAllOptions): Promise<object | object[] 
     const { page = 1, limit = 50, full = false } = options;
 
     try {
-        if (full) { // Se é para pegar todos os usuario de uma vez
-            const users = await User.find().lean();
+        if (full) { // Pegar todos os usuario de uma vez
+            const users = await User.find()
+                .sort({NOME: 1})    
+                .lean();
             console.log(`🟩 USERS | Full | ${users.length} users`);
             return users;
         }
@@ -24,7 +26,7 @@ export const getAll = async (options: GetAllOptions): Promise<object | object[] 
             return new Error(`Página ${page} inválida. Total de páginas: ${totalPages}.`)
         }
 
-        const users = await User.find().skip(skip).limit(limit).lean();
+        const users = await User.find().sort({NOME: 1}).skip(skip).limit(limit).lean();
 
         console.log(`🟩 USERS | Paginated | Page ${page} | ${users.length} users`);
         
