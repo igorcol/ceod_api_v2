@@ -1,4 +1,6 @@
-declare interface Inscrito {
+import { Models } from "node-appwrite"
+
+declare interface Inscrito extends Models.Document {
     NOME2: string
     CODIGO: string
     "NUMERO INSCRITO": string
