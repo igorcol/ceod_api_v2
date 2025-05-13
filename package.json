@@ -1,6 +1,6 @@
 {
   "name": "ceod_api",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Versão em TS e com estrutura melhorada da API para eventos.",
   "main": "index.js",
   "scripts": {
