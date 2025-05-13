@@ -39,6 +39,8 @@ declare interface Inscrito extends Models.Document {
     "EXCLUIR E REEMBOLSAR"?: string
     PAGAMENTOS?: string
     "Aguardando pagamento"?: string
-    [key: string]: any  // <- fallback para campos dinâmicos como "-8", "-43"
+    ticketReceived: boolean
+    presenca: true
+    [key: string]: any  // <- fallback para campos dinâmicos
   }
   

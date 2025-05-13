@@ -4,7 +4,7 @@ import { userProvider } from "../../database/providers";
 
 interface UpdateReceivedRequest extends Request {
     body: {
-        emailReceived: boolean;
+        ticketReceived: boolean;
     };
 }
 
@@ -16,10 +16,10 @@ export const updateEmailReceived = async (req: UpdateReceivedRequest, res: Respo
     if (!ID) {
         errors.push({ default: `❌ O ID deve ser fornecido`});
     }
-    if (typeof req.body.emailReceived !== 'boolean') {
+    if (typeof req.body.ticketReceived !== 'boolean') {
         errors.push({ emailReceived:  `❌ TRUE | FALSE`});
     }
-    if (!req.body.emailReceived && req.body.emailReceived !== false) {
+    if (!req.body.ticketReceived && req.body.ticketReceived !== false) {
         errors.push({ body: `❌ O Status de "emailReceived" deve ser fornecido`});
     }
 
