@@ -1,19 +1,43 @@
+import { Query } from "node-appwrite";
 import User from "../../../models/userModel";
+import { databases } from "../../../services/appwrite.service";
+import { config } from "../../../config";
 
+const DB_ID = config.appwrite.databaseId;
+const COLLECTION_ID = config.appwrite.inscritosCollectionId;
 
 export const updatePresence = async (ID: string, presenca: boolean) => {
     try {
-        const user = await User.findOneAndUpdate(
-            { _id: ID },
-            { presenca: presenca },
-            { new: true }
-        );
-        if (user === null) {
-            console.log(`❌ Não existe nenhum usuário com o id ${ID}`)
-            return new Error(`❌ Não existe nenhum usuário com o id ${ID}`)
+        // Busca pelo usuario
+        const result = await databases.listDocuments(
+            DB_ID, COLLECTION_ID,
+            [Query.equal("CODIGO", ID)]
+        )
+
+        if (!result.total || result.documents.length === 0) {
+            console.log(`❌ Nenhum usuário com CODIGO ${ID}`);
+            return new Error(`❌ Nenhum usuário com CODIGO ${ID}`);
         }
-        console.log(`✅ Presença confirmada -> id: ${ID}`)
-        return user
+
+        const doc = result.documents[0]
+
+        // Validar presença
+        if (typeof presenca !== "boolean") {
+            return new Error("Valor de 'presenca' inválido. Deve ser true ou false.");
+        }
+
+        // Atualizar presença
+        const updated = await databases.updateDocument(
+            DB_ID,
+            COLLECTION_ID,
+            doc.$id,
+            {
+                presenca: presenca
+            }
+        );
+
+        console.log(`✅ Presença atualizada para CODIGO ${ID}`);
+        return updated;
     } 
     catch (err) {
         console.log('❌ Erro ao atualizar presença', err)
