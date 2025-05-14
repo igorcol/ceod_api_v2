@@ -10,17 +10,18 @@ const COLLECTION_ID = config.appwrite.inscritosCollectionId
 export const getById = async (ID: string): Promise<Inscrito | Error> => {
     try {
         const result = await databases.getDocument<Inscrito>(
-            DB_ID, COLLECTION_ID,
+            DB_ID,
+            COLLECTION_ID,
             ID
         )
         
-        if (result.total === 0 || result.documents.length === 0) {
+        if (!result) {
             console.log(`❌ Nenhum usuário com CODIGO = ${ID}`);
             return new Error(`❌ Nenhum usuário com CODIGO = ${ID}`);
         }
         
         console.log(`🟩 USERS | GetById -> ${ID}`)
-        return result.documents[0]
+        return result
     }
     catch (err) {
         return new Error(`❌ Erro ao buscar id ${ID}`)

@@ -12,7 +12,7 @@ import { config } from "./config";
 const server = express();
 server.use(express.json())
 server.use(cors(CORS_CONFIG)) // setup cors
-connectDB(config.mongo.uri) // connect to mongo db
+//connectDB(config.mongo.uri) // connect to mongo db
 
 //* Config Routes
 server.use(router)
