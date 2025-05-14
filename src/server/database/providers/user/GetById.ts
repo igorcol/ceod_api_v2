@@ -9,9 +9,9 @@ const COLLECTION_ID = config.appwrite.inscritosCollectionId
 
 export const getById = async (ID: string): Promise<Inscrito | Error> => {
     try {
-        const result = await databases.listDocuments<Inscrito>(
+        const result = await databases.getDocument<Inscrito>(
             DB_ID, COLLECTION_ID,
-            [Query.equal("CODIGO", ID)]
+            ID
         )
         
         if (result.total === 0 || result.documents.length === 0) {
