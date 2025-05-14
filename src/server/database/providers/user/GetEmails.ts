@@ -9,7 +9,6 @@ const COLLECTION_ID = config.appwrite.inscritosCollectionId;
 export const getEmails = async (): Promise<
 Array<{
     $id: string;
-    CODIGO: string;
     NOME: string;
     EMAIL: string;
     emailReceived: boolean;
@@ -28,7 +27,6 @@ Array<{
 
         const EMAILS = result.documents.map(doc => ({
             $id: doc.$id,
-            CODIGO: doc.CODIGO,
             NOME: doc.NOME,
             EMAIL: doc.EMAIL,
             emailReceived: doc.emailReceived ?? false
