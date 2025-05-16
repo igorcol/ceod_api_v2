@@ -23,7 +23,7 @@ export const updateEmailReceived = async (ID: string, body: UpdateEmailReceivedB
             return new Error(`❌ Nenhum usuário com $ID ${ID}`);
         }
 
-        const doc = searchResult.documents[0]
+        const doc = searchResult
 
         // Atualiza o ticketReceived
         const updated = await databases.updateDocument(

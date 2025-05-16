@@ -2,7 +2,8 @@ import { Models } from "node-appwrite"
 
 declare interface Inscrito extends Models.Document {
     NOME2: string
-    CODIGO: string
+    //CODIGO: string
+    $id: string
     "NUMERO INSCRITO": string
     EVENTO: string
     INSCRIÇÃO: string
