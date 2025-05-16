@@ -1,6 +1,4 @@
-import { Query } from "node-appwrite";
 import { config } from "../../../config";
-import User from "../../../models/userModel";
 import { databases } from "../../../services/appwrite.service";
 import { Inscrito } from "../../../../../types/inscritos";
 
@@ -16,14 +14,14 @@ export const getById = async (ID: string): Promise<Inscrito | Error> => {
         )
         
         if (!result) {
-            console.log(`❌ Nenhum usuário com CODIGO = ${ID}`);
-            return new Error(`❌ Nenhum usuário com CODIGO = ${ID}`);
+            console.log(`❌ Nenhum usuário com $ID = ${ID}`);
+            return new Error(`❌ Nenhum usuário com $ID = ${ID}`);
         }
         
         console.log(`🟩 USERS | GetById -> ${ID}`)
         return result
     }
     catch (err) {
-        return new Error(`❌ Erro ao buscar id ${ID}`)
+        return new Error(`❌ Erro ao buscar $ID ${ID}`)
     }
 }

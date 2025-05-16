@@ -1,7 +1,6 @@
-import { Query } from "node-appwrite";
 import { config } from "../../../config";
-import User from "../../../models/userModel";
 import { databases } from "../../../services/appwrite.service";
+import { Inscrito } from "../../../../../types/inscritos";
 
 interface UpdateEmailReceivedBod {
     ticketReceived: boolean
@@ -13,15 +12,15 @@ const COLLECTION_ID = config.appwrite.inscritosCollectionId;
 export const updateEmailReceived = async (ID: string, body: UpdateEmailReceivedBod): Promise<object | Error> => {
     try {
         // Busca o usuario
-        const searchResult = await databases.listDocuments(
+        const searchResult = await databases.getDocument<Inscrito>(
             DB_ID,
             COLLECTION_ID,
-            [Query.equal("CODIGO", ID)]
+            ID
         )
 
         if (searchResult.total === 0) {
-            console.log(`❌ Nenhum usuário com CODIGO ${ID}`);
-            return new Error(`❌ Nenhum usuário com CODIGO ${ID}`);
+            console.log(`❌ Nenhum usuário com $ID ${ID}`);
+            return new Error(`❌ Nenhum usuário com $ID ${ID}`);
         }
 
         const doc = searchResult.documents[0]
@@ -35,7 +34,7 @@ export const updateEmailReceived = async (ID: string, body: UpdateEmailReceivedB
             }
         )
 
-        console.log(`✅ Email recebido atualizado para CODIGO ${ID}`);
+        console.log(`✅ Email recebido atualizado para $ID ${ID}`);
         return updated;
     }
     catch (err) {
