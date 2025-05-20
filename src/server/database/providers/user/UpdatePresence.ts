@@ -1,7 +1,6 @@
-import { Query } from "node-appwrite";
-import User from "../../../models/userModel";
 import { databases } from "../../../services/appwrite.service";
 import { config } from "../../../config";
+import { Inscrito } from "../../../../../types/inscritos";
 
 const DB_ID = config.appwrite.databaseId;
 const COLLECTION_ID = config.appwrite.inscritosCollectionId;
@@ -9,17 +8,18 @@ const COLLECTION_ID = config.appwrite.inscritosCollectionId;
 export const updatePresence = async (ID: string, presenca: boolean) => {
     try {
         // Busca pelo usuario
-        const result = await databases.listDocuments(
-            DB_ID, COLLECTION_ID,
-            [Query.equal("CODIGO", ID)]
+        const result = await databases.getDocument<Inscrito>(
+            DB_ID,
+            COLLECTION_ID,
+            ID
         )
 
         if (!result.total || result.documents.length === 0) {
-            console.log(`❌ Nenhum usuário com CODIGO ${ID}`);
-            return new Error(`❌ Nenhum usuário com CODIGO ${ID}`);
+            console.log(`❌ Nenhum usuário com $ID ${ID}`);
+            return new Error(`❌ Nenhum usuário com $ID ${ID}`);
         }
 
-        const doc = result.documents[0]
+        const doc = result
 
         // Validar presença
         if (typeof presenca !== "boolean") {
@@ -36,9 +36,9 @@ export const updatePresence = async (ID: string, presenca: boolean) => {
             }
         );
 
-        console.log(`✅ Presença atualizada para CODIGO ${ID}`);
+        console.log(`✅ Presença atualizada para $ID ${ID}`);
         return updated;
-    } 
+    }
     catch (err) {
         console.log('❌ Erro ao atualizar presença', err)
         return new Error('❌ Erro ao atualizar presença')
