@@ -14,7 +14,7 @@ export const updatePresence = async (ID: string, presenca: boolean) => {
             ID
         )
 
-        if (!result.total || result.documents.length === 0) {
+        if (!result) {
             console.log(`❌ Nenhum usuário com $ID ${ID}`);
             return new Error(`❌ Nenhum usuário com $ID ${ID}`);
         }
