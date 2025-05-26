@@ -41,7 +41,8 @@ declare interface Inscrito extends Models.Document {
     PAGAMENTOS?: string
     "Aguardando pagamento"?: string
     ticketReceived: boolean
-    presenca: true
+    presenca: boolean
+    QUARTO: boolean
     [key: string]: any  // <- fallback para campos dinâmicos
   }
   

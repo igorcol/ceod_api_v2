@@ -10,6 +10,7 @@ router.get('/users/:id', UserController.getById)
 
 router.patch('/users/:id', UserController.updatePresence)
 router.patch('/users/update-received/:id', UserController.updateEmailReceived)
+router.patch('/users/:id/quarto', UserController.updateQuarto)
 
 router.post('/export-json', jsonController.exportJson)
 router.delete('/drop-json', jsonController.dropJsonDb)
