@@ -11,7 +11,7 @@ export async function GetCountData(req: Request, res: Response) {
             const allCount = allResult.length;
             const confirmedCount = allResult.filter(user => user.PAGAMENTO === true).length;
             const presenteResult = allResult.filter(user => user.presenca === true).length;
-            const ausenteResult = allCount - presenteResult
+            const ausenteResult = confirmedCount - presenteResult
             res.status(StatusCodes.OK).json(
                 {
                     total: allCount,
