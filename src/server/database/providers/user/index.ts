@@ -4,6 +4,7 @@ import * as getById from './GetById'
 import * as updatePresence from './UpdatePresence'
 import * as updateEmailReceived from './UpdateEmailReceived'
 import * as updateQuarto from './UpdateQuarto'
+import * as updateGrupo from './UpdateGrupo'
 
 export const userProvider = {
     ...getAll,
@@ -11,5 +12,6 @@ export const userProvider = {
     ...getById,
     ...updatePresence,
     ...updateEmailReceived,
-    ...updateQuarto
+    ...updateQuarto,
+    ...updateGrupo
 }
