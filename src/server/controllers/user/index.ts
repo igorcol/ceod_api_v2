@@ -5,6 +5,7 @@ import * as updatePresence from './UpdatePresence'
 import * as updateEmailReceived from './UpdateEmailReceived'
 import * as updateQuarto from './UpdateQuarto'
 import * as updateGrupo from './UpdateGrupo'
+import * as updateAny from './UpdateAny'
 
 export const UserController = {
     ...getAll,
@@ -13,5 +14,6 @@ export const UserController = {
     ...updatePresence,
     ...updateEmailReceived,
     ...updateQuarto,
-    ...updateGrupo
+    ...updateGrupo,
+    ...updateAny
 }
