@@ -6,6 +6,7 @@ import * as updateEmailReceived from './UpdateEmailReceived'
 import * as updateQuarto from './UpdateQuarto'
 import * as updateGrupo from './UpdateGrupo'
 import * as updateAny from './UpdateAny'
+import * as search from './Search'
 
 export const userProvider = {
     ...getAll,
@@ -15,5 +16,6 @@ export const userProvider = {
     ...updateEmailReceived,
     ...updateQuarto,
     ...updateGrupo,
-    ...updateAny
+    ...updateAny,
+    ...search
 }
